@@ -1,0 +1,117 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Logout_IRCTC" this:Logout_IRCTC.in_str_IRCTC_logoutURL="https://www.irctc.co.in/nget/train-search" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_str_IRCTC_logoutURL" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1153.33333333333,672.666666666667</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Logout_IRCTC_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="logout IRCTC website after finding train name and status&#xA;" DisplayName="Logout_IRCTC" sap:VirtualizedContainerService.HintSize="476,608" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: IRCTC Next Generation eTicketing System" sap:VirtualizedContainerService.HintSize="434,470.666666666667" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="4f861e13-eea8-4c1a-b29d-546cd3faff63" Version="V1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,252.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Logout'" sap:VirtualizedContainerService.HintSize="334,158" sap2010:WorkflowViewState.IdRef="NClick_1" InteractionMode="Simulate" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="4f861e13-eea8-4c1a-b29d-546cd3faff63" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.irctc.co.in/nget/train-search" DesignTimeRectangle="544, 177, 82, 32" ElementType="Text" FriendlyName="'Logout'" FullSelectorArgument="&lt;webctrl aaname='Logout' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Logout' tag='A' type='' check:text='Logout' /&gt;" Guid="de6f4647-6375-4004-8f3f-8cdc897189fd" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFYAAAAkCAYAAAATvM09AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAGNSURBVGhD7ZrBccIwEEXTSgpJC6kiPaQCGoAquOMWOHCgAXPhyJFhhkm4bCLhlTbSGsbBi4X5O/NmsL1aW8+S0MEvX98nAv0DsUZArBFB7PvHlF7fPsE/cf5UsVoy6AbEGgGxRkCsERBrBMQaAbFGQKwREGsExBphInayPpKL/XqhXi+TBS0PR1rOtGvdgViPk+qeeCxiZxva+8wmtqssZ75trvlOr6h2Pw8bmsi8auczONL7co264nOyDkuN0ceAGE5sKpVDSOM6IX6nqm8jxSZSQ4iX9FRiubMxJ3bwLKDpfDgWooPYtI1sF6f1ZbHueDRLAXd+R3N5vhl9vh2PaDk6UyFqTrw/i3wisdyRG8Vmx2euis1qj0bsMEsB36u9zoOI1SKIvOOfV+vzKC/Ih7I76cpwYh2p3IvbLbds6FP/2nYrFVdXSh1Zo1Sx/RBlZKM8FVsgBYuVo/Vv5COyPIoWm619LnqYpvegcLGPC8QaAbFGQKwREGsExBoBsUaoYvEZ5220fsYJ+uREPwgvTHNbQEoHAAAAAElFTkSuQmCC" InformativeScreenshot="36c3d1b964fe4b88bd7558bf2a51bb29.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="625, 183, 264, 18" ElementType="Text" FriendlyName="'Welcome Sankaraveni'" FullSelectorArgument="&lt;webctrl aaname='Welcome Sankaraveni M (Veni1799)' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Welcome Sankaraveni M (Veni1799)' tag='SPAN' type='' check:text='Welcome Sankaraveni M (Veni1799)' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAQwAAAAWCAYAAAA1tqLaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAUfSURBVHhe7ZjfbdwwDMazSgfpDgdkmD7msklwmySDBGimaPPi2pYokh9JS7omRZPw4QfkLIl/P9Fub759/7Fs/Pr9miRJckgOjCRJhsmBkSTJMDkwkiQZJgdGkiTD5MBIkmSYHBhJkgwzODBelofbm+Xm5rQ8PPPzx7vt2cb98tjZG/HzctptnC4v7vr/z9Ny3mvg1eKNeL4sp8327WX56a1/aKh+cd1YZyt3T2KNtFY4P+lzmrp3ryH5dDRKtX6rPh717ul+j1tpv/m38D6dt2db1Qxy2deu1NLwFwYFwE3RF8U+Hyv4xx4Y0LjGGw+NTz0w+ijxyxrA5TocGPVy0h6yibr7V3qUOY0NDNaUqgch6kI5aIQmoRYzjP+TpDppEx4Sa0njvhWdoL5MfoPgra3eKgVtE94ULYaLuNDVL62tRGIpDHwhmYvMA0Q2wzTQE/367KEnIjrXcuBaHvoQQ/xMPmpNj86VGvtflfYFUYFetf0XqRepgf4LJuo1xh5fAOqL8EE1VHWifSLnSOdybaZ3QiOn2xI/6lBRz9t6cy66TzYHqpOxoXIfY3xgQOIchHZOz6kIutkVESjuNwIkwgHEtIKIoaBYGySbfyS+QiziAscaNj2Ipe0HQTKOaLe6tf1ivefDqeleq965um7tUF38XslaRL3ifqJNC9k43+l4ynMeguHAAO2W585wp3rQvqA3bf9s75rfum7qi9QYVdy2Xq0+e1zxwGA/ds8oE//pKQOVDunvkkAJngKpZ0TCPGj0b0qmXdxIUK1JQmDY6HYR8AwWFX9bm3EzC/ZCdJpAsVF+LTY6h7GJPWLgtTUP9NFqeOU5rCutmxrZOrb6wBnWBPTXgS9E3bvb4r/1hXEweRVQa2QHtch2oR5TveM70DD189d1XuwDITtWkxWRv81tjImB4TSuFoGdQ/PFRUWwKZhslAjuL4BQjUAgrhXth9YdQGQeFJPExI+1ILuOoEwzTR2DoRT56F3K8BzVqfiTf29rXt4F3mP7qbXTjW2FbYg+i8tmfWh8zay0vDffsUYsdc9M76YHRs3VOwdDA7+8NmTsp3V9j0H0NaxJh6mB0Zzgv73ogtIbEC+DR92Dgfea7xf5HQeG27AI0UjyjbHg7xnRrVDtObeVno/oUnbP8bPT5VJsOHF6UOy2nzWWZieITSBtaA3KQSZ9aFBjDPeLLp3Mnexa6kB8z4FB52QvAoxPxPET1+SYqYEhhasD1BeOg0BxWDBw+s1nqKnQJCkwEjqdMcK3otQig4EzivFjn6GYW350Zlp0UI91vesjuJT9c/JsQQnMESKCPqwm/NgkygbVV5yxPjSUlxdny7kibZg+INO9q8+Ig/rFvrH/fT149TmqyRFzA0OJxxcfBiafM5ycDVwLtCFE7NsUfs1FtqLEIlIciMzFEsS6QueiWK8fGOvvYCgZDvIfO1fg2nDfCkH+IhesczvT9vixSbQN4RPyD3tl9CAR9vBSU90RsvOOA6PkhPUuuFqVuVG+EvBv4hxkcmAIkYWiso1vZyoySDqniwZCdIqtbUJhrxgYG9iIsekLsa7oJsj1LU74mrlSdFpQHR9O/kOxEUeiN/nrs7bOdX+zFcXGoI3ebwv61NB5t9+UOyFtXNm7Rjgw7FeDv15xBiHltGN8B30eYHpgJMlHpFyg+QvyOTkeoEfkwEi+BvVtHn+FfCH+ohY5MJIvQv0Mdz7fvxr719YVXxcbOTCSJBkmB0aSJIO8Ln8Adln+2dDbI+8AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-11, -11, 1942, 1030" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="b5012952b360b570a9bc1a352096a739.png" Selector="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System'/&gt;" Url="[in_str_IRCTC_logoutURL]" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>

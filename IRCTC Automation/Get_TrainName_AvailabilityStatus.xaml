@@ -1,0 +1,515 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_TrainName_AvailabilityStatus" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_str_trainListUrl" Type="InArgument(x:String)" />
+    <x:Property Name="dt_trainNameTable" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="out_dt_extractedTrainName" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="str_trainNameExcelPath" Type="InArgument(x:String)" />
+    <x:Property Name="sheetNumber" Type="InArgument(x:String)" />
+    <x:Property Name="converted_Json_Output" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1153.33333333333,3799.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Get_TrainName_AvailabilityStatus_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="80">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Getting Train Name and Availability Status " DisplayName="Get_TrainName_AvailabilityStatus" sap:VirtualizedContainerService.HintSize="936.666666666667,3734.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Boolean" Name="isSearchedTrainPage" />
+      <Variable x:TypeArguments="x:String" Name="out_getTrainStatus" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:UiElementExists sap2010:Annotation.AnnotationText="to check whether the page is a searched train page or not ( eg. Tirunelveli --&gt; Chennai )" DisplayName="Element Exists - Searched Train" Exists="[isSearchedTrainPage]" sap:VirtualizedContainerService.HintSize="894.666666666667,151.333333333333" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+      <ui:UiElementExists.Target>
+        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="040d9ebe-30dd-4eba-8a6e-0674924fd002" InformativeScreenshot="b7d4178be315a0ce928c532bca152534" Selector="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System' /&gt;&lt;webctrl css-selector='body&amp;gt;app-root&amp;gt;app-home&amp;gt;div&amp;gt;div&amp;gt;app-train-list&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;strong' parentid='divMain' tag='STRONG' /&gt;">
+          <ui:Target.TimeoutMS>
+            <InArgument x:TypeArguments="x:Int32" />
+          </ui:Target.TimeoutMS>
+          <ui:Target.WaitForReady>
+            <InArgument x:TypeArguments="ui:WaitForReady" />
+          </ui:Target.WaitForReady>
+        </ui:Target>
+      </ui:UiElementExists.Target>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:UiElementExists>
+    <If Condition="[isSearchedTrainPage]" sap:VirtualizedContainerService.HintSize="894.666666666667,3420.66666666667" sap2010:WorkflowViewState.IdRef="If_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap2010:Annotation.AnnotationText="if the page is a searched page then it excutes the following workflows" sap:VirtualizedContainerService.HintSize="858,3226" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Int32" Default="1" Name="counter" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard sap2010:Annotation.AnnotationText="available train list page for a particular search" AttachMode="ByInstance" DisplayName="Use Browser Chrome: IRCTC Next Generation eTicketing System - TrainList Page" sap:VirtualizedContainerService.HintSize="816,3103.33333333333" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="da7233b3-73cf-44ab-b72c-38770b75892e" Version="V1">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="782,2854.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="extractedOutput" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NExtractData sap2010:Annotation.AnnotationText="extracting all train names for a particular search" AppendResults="False" ContinueOnError="True" DataTable="[out_dt_extractedTrainName]" DisplayName="Extract Table Data - Extracting Train Name" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='Train Name'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Column0' attr='text'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='app-train-avl-enq' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="740,189.333333333333" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="Rows" MaximumResults="0" ScopeIdentifier="da7233b3-73cf-44ab-b72c-38770b75892e" Version="V1">
+                    <uix:NExtractData.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="1925, 164, 0, 0" FriendlyName="'TIRUNELVELI TO'" FullSelectorArgument="&lt;webctrl tag='APP-TRAIN-LIST' /&gt;" Guid="e99169a8-8eab-4e09-a0f0-ea9e85ab2657" InformativeScreenshot="8aabd56a7b7c834c0c0962932815cc0c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System' /&gt;" SearchSteps="Selector" />
+                    </uix:NExtractData.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </uix:NExtractData>
+                  <ui:AddDataColumn x:TypeArguments="x:Object" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Status" DataTable="[out_dt_extractedTrainName]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="740,190" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:AddDataColumn>
+                  <ui:OutputDataTable DataTable="[out_dt_extractedTrainName]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="740,80.6666666666667" sap2010:WorkflowViewState.IdRef="OutputDataTable_4" Text="[extractedOutput]" />
+                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="740,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_16">
+                    <ui:CommentOut.Body>
+                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,177.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_14" Text="[extractedOutput]" />
+                      </Sequence>
+                    </ui:CommentOut.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:CommentOut>
+                  <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_dt_extractedTrainName]" DisplayName="For Each Row in Data Table - Iterating each Train " sap:VirtualizedContainerService.HintSize="740,1734.66666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                    <ui:ForEachRow.Body>
+                      <ActivityAction x:TypeArguments="sd:DataRow">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="eachTrain" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="706,1611.33333333333" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Boolean" Name="directStatus" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="664,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_17">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,177.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_10" Text="[eachTrain(&quot;Train Name&quot;)]" />
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <ui:UiElementExists DisplayName="Element Exists 'TD'" Exists="[directStatus]" sap:VirtualizedContainerService.HintSize="664,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+                            <ui:UiElementExists.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1c39614f-55f4-44c9-9b4d-cc3632f6692d" InformativeScreenshot="ae7fd9615bc2a31876e29392dfb7c374" Selector="&lt;webctrl parentid='divMain' tag='TABLE' /&gt;&lt;webctrl tableCol='3' tag='TD' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:UiElementExists.Target>
+                          </ui:UiElementExists>
+                          <If Condition="[directStatus]" sap:VirtualizedContainerService.HintSize="664,510.666666666667" sap2010:WorkflowViewState.IdRef="If_2">
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="376,345.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NGetText DisplayName="Get Text 'AC 3'" sap:VirtualizedContainerService.HintSize="334,158" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="da7233b3-73cf-44ab-b72c-38770b75892e" Version="V1">
+                                  <uix:NGetText.Target>
+                                    <uix:TargetAnchorable BrowserURL="https://www.irctc.co.in/nget/booking/train-list" DesignTimeRectangle="874, 586, 184, 99" FriendlyName="'AC 3'" FullSelectorArgument="[String.Format(&quot;&lt;webctrl parentid='divMain' tag='TABLE' idx='{0}' /&gt;&lt;webctrl tableCol='3' tag='TD' tableRow='1' /&gt;&quot;, counter)]" FuzzySelectorArgument="&lt;webctrl parentid='divMain' tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' aaname='' /&gt;" Guid="25d4a1e0-dc98-49f9-864d-c59025f2b455" ImageBase64="" InformativeScreenshot="b3f12e7805db1d2d2615e2d1206c3914.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System' /&gt;" SearchSteps="Selector">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target DesignTimeRectangle="509, 698, 95, 43" ElementType="Button" FriendlyName="'Book Now'" FullSelectorArgument="&lt;webctrl aaname=' Book Now ' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' Book Now ' tag='BUTTON' type='button' check:text='Book Now' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAGMAAAAvCAYAAAD3oXSCAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAMhSURBVHhe7VuxbhQxEOV/UvArfEA+ghblE6io0lEhCnr60CDlA6JUUCAFCYSE0kREe7eOn7MzGc/Nbu60682IzJOe7tbrGXves72VX6SAG4QZjhBmOIJpxvbL+7R59yp1Jy9T9+YouBSzntAV+lqozOj//CidN6fHafP5bdp+/Zi255+CSzHrCV2Lvlln6C1RmVGM+PDaThRclNAZekuwGeVoyo5ZgcE2LHqLI4vNKLsCR5MRFGzDcmSJ3cFm4OMS34iVmfWG7oQHM/LX3gwINiV0J4QZT8wwwxHDDEcMMxwxzHDEMMMRwwxHDDMcMcxwxNlm9Ne/higDmy71387NuDnsry5S6rcp3d6k/vLM7KOZbq7v56RiMD/ME/mQV8aszbZmAAcIti9nmZHR//7O7f+lGfit2hsWOdcMuWOflxmi8NJOQhLU+yqWoITSZsj+eh5ENqO7LT/Uj2P1GENdjBzP7/LO0m2cf2jDvDC/Q0xezIwxVEcCFaEhJsxCG6BclRkQE0Xj/YgRIInV/72qxLfMYGE1tPmZ+M/PE330fCw2N4OLppUCTKwofh6KqsagQsmM7t89AZHTIuWFoXJls2g0T8qdweYLsUs81UIxlA/QbY/MS3IxM/SqlOLj3dhK4eLR/vOyKpL7TAhG0ONrVmbIuemdMiIiL4ihXdYt3wElh/gv80yxmRnyHSbW2gydV1OLs5ODcu9rBsXT7sT4iEUbasB8H5mT5no7QzzLQkkkauPn3BcxJRcJMbSxEPSshLJIeeVK5TiAzBAmsXG0GGSbrAfI+a02GmsfLmbGKIYiS19adRqyjxBDg4WgPmQGiSDyaJpmCJFlLPXdwTAex4va8X+nTYy1D9uaYYizI7axlSuRAJWHcwhx2GglGNEyA+Q4PYauy1jlPA8Ry/kOPKLA2WYEl2OY4YhhhiOGGY4YZjhimOGIYYYjhhmOGGY4YpjhiLYZcT9jfY7dz4ibS+tz9OZS3Olbn6N3+oCyO+K26yqcvO0KxD3wxsx6lqMJ+madJ++BE8qRlTvj44KvfXAhZj2hqzyaJEwzAk+BlO4AXca/88B8Fx0AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NGetText.Target>
+                                  <uix:NGetText.Text>
+                                    <OutArgument x:TypeArguments="x:String">[out_getTrainStatus]</OutArgument>
+                                  </uix:NGetText.Text>
+                                </uix:NGetText>
+                                <ui:CommentOut DisplayName="Message Box -Comment Out" sap:VirtualizedContainerService.HintSize="334,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_19">
+                                  <ui:CommentOut.Body>
+                                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,177.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_15" Text="[out_getTrainStatus]" />
+                                    </Sequence>
+                                  </ui:CommentOut.Body>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:CommentOut>
+                              </Sequence>
+                            </If.Then>
+                            <If.Else>
+                              <Sequence sap:VirtualizedContainerService.HintSize="242,347.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick sap2010:Annotation.AnnotationText="Clicking on refresh on 3 Ac on each train for a particular search" ClickType="Single" DisplayName="Click - Clicking on Refresh in 3 Ac " sap:VirtualizedContainerService.HintSize="200,114.666666666667" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="da7233b3-73cf-44ab-b72c-38770b75892e" Version="V1">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable BrowserURL="https://www.irctc.co.in/nget/booking/train-list" DesignTimeRectangle="887, 616, 152, 33" FriendlyName="'Refresh'" FullSelectorArgument="&lt;webctrl aaname=' Refresh ' parentid='divMain' tableCol='3' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' Refresh ' parentid='divMain' type='' tag='DIV' check:text='Refresh' /&gt;" Guid="fb9f0ff8-1998-4a6e-af96-c367582f4ee3" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJwAAAAlCAYAAAC3fYDwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAPBSURBVHhe7Zo9L2xRFIbnD2h0GqUoJn6BREUjIhmFQiGRSCQqUSAxUfoFCh2iIZEohRCVlkIjCkEEQRCJj2nWzXuuNdmzZ505e07m7tziLZ6Y7I+195z1zDpfCpVKRQiJBYUjUaFwJCoUjkSFwpGoUDgSFQpHokLhSFQoHIkKhTP4+fmRm5sb2dzclIWFBSmVSrK0tCS7u7vy/PxsziFhUDiPy8tLGR8fl7a2NikUCnW0t7fL/Py8PDw8yPf3t6ytrcno6ChFDITC/YKqdnBwIF1dXaZoPv39/bK4uJiIOTAwIPf392ZcUguF++X4+Fg6OzurQvX29srGxobc3t4mMl1dXcnq6qoUi8Ua8QCFC6cq3Pn5ufT09NQdTAUJcSeGgkQgIYgxOTkp7+/v5rhWoGs1u9fHx0cZGRmpftdyuZy6TwiIU6iOBRQunDrhrGStr68nfRjj92WBi+1/LZqSV7jt7e2qPFNTU/L6+mqO02s2//qOwoUTJBxkgTSQx+/L4n8XTr8bxOnu7pazszNzHMBdqnUzQeHCCRIOWOJogvXAu/1uIhXEBmifnZ2tm+Of1i3B0ab9ANVX+3Q/Ozs7Nftq9EO5vr6Wvr6+ZNzExIS8vb2Z48DT05McHR0lNxcup6enyU2HNYfUkrvCaXLdNnz2f+1oc6VCfEsCXV8F0jXduX4sf8+6J7ShD226nvW9gCu5vyfSenJfw6HNl0sT7lYdSzg/ljUOuHtSARtJYa2fNc8Vbm5uTr6+vsxxpDXUCYcD7+ML0iiJaHPb8dkXLkRUoOtoO/5iP/58ReO4P5os4XQO4uKNAk6b1jjSGhpWOHxGItJEUCF98gpnxQLu+ronxY2dRzhUNFQ2xMINwd7enjmOtIbMU6pWlWaS6NKMcL7YWah8uo88woHDw0Pp6OhIYg0NDSXP2qxxCo7VysqKfH5+mv0knUzhNGG+JL5I7lhXnBDh0qSwBPLBWho/r3AfHx8yMzOTCAeGh4fl4uKibhzuRBEbxwnVcHl5mdI1SdBNg/a5SdPkum1IfpaYlnBA10iT1RJH96Bz8goHUNVQ3VQ6CIU3Cni9hUcfqGiDg4PVftDoITGxCRIOIKk4yK4QmmBNgCVSqHBA96Dx3HlA5dF+YAmYRziAf0kaGxuriZ/G9PS0vLy8mHFIOlXhyF9wet3a2kpe3luiocrt7+8nr7ms+aQxFC4FCHV3d5dUS5xST05O+MikBVA4EhUKR6JC4UhUKByJCoUjUaFwJCoUjkSFwpGoUDgSFQpHIlKRP9nfSzAPJe4rAAAAAElFTkSuQmCC" InformativeScreenshot="024c1c5c40a728f724a809fc578252dd.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target DesignTimeRectangle="491, 483, 591, 43" FriendlyName="'NELLAI EXPRESS (12632)'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app-root&amp;gt;app-home&amp;gt;div&amp;gt;div&amp;gt;app-train-list&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;app-train-avl-enq&amp;gt;div&amp;gt;div&amp;gt;div' parentid='divMain' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='divMain' tag='DIV' aaname='' check:text='NELLAI EXPRESS (12632)' /&gt;" ImageBase64="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" SearchSteps="FuzzySelector, Image" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NClick.Target>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </uix:NClick>
+                                <uix:NGetText sap2010:Annotation.AnnotationText="Getting Seat availability for each train" DelayBefore="3" DisplayName="Get Text - Seat Availability" sap:VirtualizedContainerService.HintSize="200,98" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="da7233b3-73cf-44ab-b72c-38770b75892e" Version="V1">
+                                  <uix:NGetText.Target>
+                                    <uix:TargetAnchorable BrowserURL="https://www.irctc.co.in/nget/booking/train-list" DesignTimeRectangle="506, 799, 184, 76" FriendlyName="'Mon, 04 AprWL20'" FullSelectorArgument="[String.Format(&quot;&lt;webctrl idx='{0}' parentid='divMain' tag='TABLE' /&gt;&lt;webctrl tableCol='2' tag='TD' tableRow='1' /&gt;&quot;, counter)]" FuzzySelectorArgument="&lt;webctrl parentid='divMain' tag='TABLE' /&gt;&lt;webctrl type='' tag='TD' aaname='' /&gt;" Guid="9639645a-3d70-4797-8b8c-3a0255b89f44" InformativeScreenshot="3247df80d65eba0980ea2602ad78eb63.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System' /&gt;" SearchSteps="Selector" />
+                                  </uix:NGetText.Target>
+                                  <uix:NGetText.Text>
+                                    <OutArgument x:TypeArguments="x:String">[out_getTrainStatus]</OutArgument>
+                                  </uix:NGetText.Text>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </uix:NGetText>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                          <Assign sap:VirtualizedContainerService.HintSize="664,62" sap2010:WorkflowViewState.IdRef="Assign_8">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[converted_Json_Output]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[JsonConvert.SerializeObject( out_dt_extractedTrainName)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="664,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_18">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,177.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,85.3333333333333" sap2010:WorkflowViewState.IdRef="MessageBox_13" Text="[out_getTrainStatus]" />
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <Assign sap2010:Annotation.AnnotationText="this counter is used as a varaiable for the get text - seat availability selector" sap:VirtualizedContainerService.HintSize="664,107.333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">[counter+1]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <Assign sap2010:Annotation.AnnotationText="assigning train status into &quot;Status&quot; column" sap:VirtualizedContainerService.HintSize="664,107.333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[eachTrain("Status")]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object">[out_getTrainStatus.ToString]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="664,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_15">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,206.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:WriteRange AddHeaders="True" DataTable="[out_dt_extractedTrainName]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_4" SheetName="Sheet1" WorkbookPath="[str_trainNameExcelPath]">
+                                  <ui:WriteRange.StartingCell>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <Literal x:TypeArguments="x:String" Value="" />
+                                    </InArgument>
+                                  </ui:WriteRange.StartingCell>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:WriteRange>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="664,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_8">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,281.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NExtractData sap2010:Annotation.AnnotationText="Extracting the availabiltiy seat on clicking refreshing for each train" AppendResults="False" ContinueOnError="True" DataTable="[out_extractedSeatAvailability]" DisplayName="Extract Table Data - Seat Availability" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='New column 0'&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;column exact='1' name='Column0' attr='text'&gt;&lt;webctrl tag='div' idx='4' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='5' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='app-train-avl-enq' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='7' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='table' idx='1' /&gt;&lt;webctrl tag='tr' idx='1' /&gt;&lt;webctrl tag='td' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="334,204" sap2010:WorkflowViewState.IdRef="NExtractData_5" LimitExtractionTo="Rows" MaximumResults="0" ScopeIdentifier="da7233b3-73cf-44ab-b72c-38770b75892e" Version="V1">
+                                  <uix:NExtractData.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="1925, 41, 0, 0" FriendlyName="'TIRUNELVELI TO'" FullSelectorArgument="&lt;webctrl tag='APP-TRAIN-LIST' /&gt;" Guid="fb13e719-23a9-4322-9e5d-76f16867d69c" InformativeScreenshot="7196c3b3c571c9a5e5741b6c6362f3dd.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System' /&gt;" SearchSteps="Selector" />
+                                  </uix:NExtractData.Target>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </uix:NExtractData>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="664,52.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="326,172.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:OutputDataTable DataTable="[out_extractedSeatAvailability]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="284,80.6666666666667" sap2010:WorkflowViewState.IdRef="OutputDataTable_3" Text="[resultTrainAvailability]" />
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:CommentOut>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEachRow.Body>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:ForEachRow>
+                  <ui:WriteRange AddHeaders="True" DataTable="[out_dt_extractedTrainName]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="740,114.666666666667" sap2010:WorkflowViewState.IdRef="WriteRange_5" SheetName="[sheetNumber]" WorkbookPath="[str_trainNameExcelPath]">
+                    <ui:WriteRange.StartingCell>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </ui:WriteRange.StartingCell>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:WriteRange>
+                  <uix:NClick ClickType="Single" DisplayName="Click 'Back'" sap:VirtualizedContainerService.HintSize="740,158" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="da7233b3-73cf-44ab-b72c-38770b75892e" Version="V1">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="11, 68, 54, 42" ElementType="Button" FriendlyName="'Back'" FullSelectorArgument="&lt;ctrl name='IRCTC Next Generation eTicketing System - Google Chrome - Sankar*' role='pane' /&gt;&lt;ctrl name='Google Chrome' role='pane' /&gt;&lt;ctrl name='Back' role='push button' /&gt;" FuzzySelectorArgument="&lt;ctrl name='IRCTC Next Generation eTicketing System - Google Chrome - Sankar*' role='pane' /&gt;&lt;ctrl name='Google Chrome' role='pane' /&gt;&lt;ctrl name='Back' role='push button' automationid='' check:text='Back' /&gt;" Guid="8bba7c42-4d6a-4c09-8b82-e61daa11f7ef" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADoAAAAuCAYAAAB5/AqlAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAFUSURBVGhD7dYhTgNBFMZxjgIJkkIPUcGiKiAgmrQGzlFTh6hElBNganAIHBhcEXVNmlSXcIBHvs3XzYpJSrY77yUvb5K/2MxkZn9is3O0G4Kx/RVZbVxGZkDdRGZA3URmQN1EZkDdRGZA3URmQN1Epi30++1d7vo38jF/Tc63EZl2UCDPz7pyfHIqt/3r5Jo2ItMGWkd2Ohflc2pdG5GpD9VEIjJ1odpIRKYe1AKJyNSBWiERmfmhlkhEZl7o+vOrQqKHwUim40mjsFfqjH2RmRd6PxhWyEPDXqkz9kVmXihuPPWXLXqX5eWgSU1vT2Tm/0ZfnmYV9KpXyM9imVyXKzLzQ5EllkwdKLLCkqkHRRZYMnWhSBtLpj4UaWLJtIGiOrbpP/I/kWkHRTvs8+M0Od9GZNpCNSIzoG4iM6BuIjOgbiIzoG4iM6BuIjOgbiLTO3Qjf+htGFu06dI/AAAAAElFTkSuQmCC" InformativeScreenshot="35d8f06ebd98b2a7653a01e68f6fd2e9.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='IRCTC Next Generation eTicketing System - Google Chrome' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="119, 68, 42, 42" ElementType="Button" FriendlyName="'Reload'" FullSelectorArgument="&lt;ctrl name='IRCTC Next Generation eTicketing System - Google Chrome - Sankar*' role='pane' /&gt;&lt;ctrl name='Google Chrome' role='pane' /&gt;&lt;ctrl name='Reload' role='push button' /&gt;" FuzzySelectorArgument="&lt;ctrl name='IRCTC Next Generation eTicketing System - Google Chrome - Sankar*' role='pane' /&gt;&lt;ctrl name='Google Chrome' role='pane' /&gt;&lt;ctrl name='Reload' role='push button' automationid='' check:text='Reload' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAYAAABXuSs3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAHMSURBVGhD7ZchTwMxFID5KZAgGSARkxMMNQEBsQQMZAIUE+CABEfC5ARzGAICgyBB4MDgQOBISOb5BYWvyVvK0l1Kr7yFUPElt3uv1+/eutduwrz1zV8ki2uTxbXJ4tpkcW2yuDZZXJuk4h/Pr+aq2zNH7X2z1lixcM09YqPG3J5feGNFJBF/f3wy7daOmZyaLoQc9wW4XqrVzenB8bfnhVBa/OXu3szOzA/kKpU5s9lctzLANfckTi5jRJp76uIIuMKX3TNvHvROOoMXQF6k1cVZHlLpem3RfvbluVBlckV4LOK7rW07KVUMkQZ3eYxFHAGZtGh5uIySBjVxZJmQavviwxRJg5r4YXvPTkjH8MWHoU8jN4qH6xvvuCKixFcby9GVSsX/Ev/pUvkNSv046eO+eAh8W6EdyUeUeEw7dGEXlfG+eAhR4iAbEFUP3YDA3XF5hi8nhGhxBOTsQY8OkedsU12o2jGM5Zvz5YUQLQ7uIYsqcu725SHY+VrTUmmkGevLDaWUOCAglZcX2GpuWFH5QyHCqaShtDhQUVnzRZBTZnm4JBEXkKLL0OfZpABZukgqYSGpuCZZXJssrk0W1yaLa5PFtcniuvTNJ7Td3kmRkK9UAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="-11, -11, 1942, 1030" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="a777413515a815d7b69973ae8460fb6c.png" Selector="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System'/&gt;" Url="[in_str_trainListUrl]" />
+            </uix:NApplicationCard.TargetApp>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uix:NApplicationCard>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

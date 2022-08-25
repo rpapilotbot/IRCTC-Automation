@@ -1,0 +1,129 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Alert_On_Public_Health_Response_to_COVID_19" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_alertBoxUrl" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>620.666666666667,1003.33333333333</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Alert_On_Public_Health_Response_to_COVID_19_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Clicking OK on the alert box containing information about Public Health Response to COVID-19" DisplayName="Alert_On_Public_Health_Response_to_COVID_19" sap:VirtualizedContainerService.HintSize="476,938.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Clicking OK in Alert Box&quot;]" />
+    <uix:NApplicationCard sap2010:Annotation.AnnotationText="Initial Alert Box - website URL" AttachMode="ByInstance" DisplayName="Use Browser Chrome: IRCTC Next Generation eTicketing System" sap:VirtualizedContainerService.HintSize="434,532" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="DebuggerApi" ScopeGuid="7b5fb1b5-2e93-484f-9bab-53d561b7fccc" Version="V1">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,283.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NClick sap2010:Annotation.AnnotationText="Clicking OK in Alert box while login into IRCTC Website" ClickType="Single" DisplayName="Click - Clicking OK in the Alert Box" sap:VirtualizedContainerService.HintSize="334,188.666666666667" sap2010:WorkflowViewState.IdRef="NClick_3" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="7b5fb1b5-2e93-484f-9bab-53d561b7fccc" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.irctc.co.in/nget/train-search" DesignTimeRectangle="945, 827, 52, 38" ElementType="Button" FriendlyName="'OK'" FullSelectorArgument="&lt;webctrl tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='submit' aaname='OK' check:text='OK' /&gt;" Guid="52e2da2d-dc74-4ba9-a02c-2780db797b14" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADgAAAAqCAYAAADmmJiOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAHYSURBVGhD7ZoxT8MwEIX5P1QsrIj/BUgsiKk7fwJ168qeoSNrNqaOXSrRJse9iy9NbFeU2lJtkyc9qUpt632x71o1vaLCNQHmLj/g1yft3x9p/3pPu4cZ+zpRzyQjsiKzTw5g8/FGu+db2j3d0J4X+XYWTcfIhozIiszIbmsEKHAvd0lDHbNk5uw25AGQtxh3IUc4tWRnhuFx7QFxjmWrrUnZGaWFmjQ6AKJYfRMyMxjAouoB0ZFyPp7qjmFmqEaA7uCcrZoAc7VqAszVqgnwr27qjVlRtaF2aY+bU7vlt9YL6zp7WXXTvPNOtyoioAlNNTXD66ta1qd67o51ABfUdoPHa5xhVTTAZs2LbCt/MLMr7Uqv+QDjwcGqOIAOgOvxDbAB48LBqjiAcgx/CTcaMwQ8crQDrYoC2DWWUwC1cShgZeDw2tNwAqy6LKCI53kbUZhVlz2igzlSo4EfDUOrEmkycMpdlB3+MXEYF6MeVdEAfcdO7K2vI4Ds/ptQYD2qIgJ2Dv6qxu7qkRUAqYoOmIpVE2CuVk2AuVr1nwAL/+G3+J/ui3/4UvzjM6jsB6BGAsl3QbZaJyZqZJO+gdLizDYc5ACKeItxjlGs6Ei+xdPwGX9CKEtEP9KezfiuO2dDAAAAAElFTkSuQmCC" InformativeScreenshot="1a606de4e214b5f731266ed24d7a6dde.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="471, 314, 43, 23" ElementType="Text" FriendlyName="'Alert'" FullSelectorArgument="&lt;webctrl tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='SPAN' type='' aaname='Alert' check:text='Alert' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAC8AAAAbCAYAAADszNYXAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAFUSURBVFhH7ZSxzcIwEIVZhUGYiwmYgCnSwwoUFFkAmvwdZYREexDjnJ/t5+SPFGSC/KRX4DvbX853rNabrSzVBT6XC3wuF/hc/lX4s1yk10NOe5bz8v4qrc26HEl8Bu/qh8j9KrtgPQ1/vFmkt9r6wPM+DF819vAp8LqpF9ls/HXwCNS4F6BwQ/AQe+smFcZfRriqaw+rtv6DtgU1Z91L4U2PGXWXHeR0tz9hozoFH7Sdkz8/0QsbdTk4c6Bh+BjW/5ggn8LDxXoZLwLCs7ma1jYMBtaiC1i+Vj34l9J1VwQHTwqD8f/A82cEhYcQePdSKbmPGoIbiwfwiT4L5PX218AnhywQDu6UtiGeDV4Tx/oP4wyeDiwHmQceILzKouFldHAp/HDrYN4YfHQOsCk8JuHhvqGi/WUJeGMsiFHcRmPw0RxCXjCwy3KBz+UCn8sLht/KE+04SQVy5SjaAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NClick>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-11, -11, 1942, 1030" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="c1bfa9ed4ca9e2da0070e9434596769d.png" Selector="&lt;html app='chrome.exe' title='IRCTC Next Generation eTicketing System'/&gt;" Url="[in_alertBoxUrl]" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,94.6666666666667" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Ended Clicking OK in Alert Box&quot;]" />
+  </Sequence>
+</Activity>
